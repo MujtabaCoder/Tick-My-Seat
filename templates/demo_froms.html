@@ -1,0 +1,116 @@
+{% comment %} this toggel checkbox {% endcomment %}
+<div class="form-check mb-3">
+    <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+    <label class="form-check-label" for="validationFormCheck1">Check this checkbox</label>
+    <div class="invalid-feedback">Example invalid feedback text</div>
+  </div>
+  {% comment %} this is text color  {% endcomment %}
+  <p class="text-primary">.text-primary</p>
+  <p class="text-secondary">.text-secondary</p>
+  <p class="text-success">.text-success</p>
+  <p class="text-danger">.text-danger</p>
+  <p class="text-warning">.text-warning</p>
+  <p class="text-info">.text-info</p>
+  <p class="text-light bg-dark">.text-light</p>
+  <p class="text-dark">.text-dark</p>
+  <p class="text-muted">.text-muted</p>
+  <p class="text-white bg-dark">.text-white</p>
+
+  {% comment %} this is collapse  {% endcomment %}
+
+  <p class="d-inline-flex gap-1">
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card card-body">
+          Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+        </div>
+      </div>
+    </div>
+
+{% comment %} on off switches {% endcomment %}
+    <h4>More Switch Examples</h4>
+  <ul class="list-inline">
+    <li>
+      <div class="btn-group btn-toggle"> 
+        <button class="btn btn-xs btn-default">ON</button>
+    	<button class="btn btn-xs btn-success active">OFF</button>
+    	</div>
+    </li>
+    <li>
+      <div class="btn-group btn-toggle"> 
+    	<button class="btn btn-xs btn-default">ON</button>
+    	<button class="btn btn-xs btn-danger active">OFF</button>
+    	</div>
+    </li>
+    <li>
+      <div class="btn-group btn-toggle"> 
+    	<button class="btn btn-xs btn-default">ON</button>
+    	<button class="btn btn-xs btn-info active">OFF</button>
+    	</div>
+    </li>
+    <li>
+      <div class="btn-group btn-toggle"> 
+    	<button class="btn btn-xs btn-success">Y</button>
+    	<button class="btn btn-xs btn-danger active">N</button>
+    	</div>
+    </li>
+    <li>
+      <div class="btn-group btn-toggle"> 
+    	<button class="btn btn-xs btn-default">1</button>
+    	<button class="btn btn-xs btn-primary active">0</button>
+    	</div>
+    </li>
+    <li>
+      <div class="btn-group btn-toggle"> 
+        <button class="btn btn-xs btn-primary active">Preview</button>
+    	<button class="btn btn-xs btn-default">Source Code</button>
+    	</div>
+    </li>
+    <li>
+      <div class="btn-group btn-toggle"> 
+    	<button class="btn btn-xs btn-info">Yes</button>
+    	<button class="btn btn-xs btn-primary active">No</button>
+    	</div>
+    </li>
+  </ul>
+
+
+  {% comment %} modal s for you {% endcomment %}
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>

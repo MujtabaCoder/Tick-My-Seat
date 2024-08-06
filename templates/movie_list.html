@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% block title %}Movie list {% endblock %}	
+{% block page_title %} Movie List{% endblock %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+				
+					{% comment %} <!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-sub-header">
+									<h3 class="page-title">Properties</h3>
+									<ul class="breadcrumb">
+										<li class="breadcrumb-item"><a href="students.html">Student</a></li>
+										<li class="breadcrumb-item active">Properties</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div> {% endcomment %}
+					<!-- /Page Header -->
+					
+					{% comment %} <div class="student-group-form">
+						<div class="row">
+							<div class="col-lg-3 col-md-6">  
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search by ID ...">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">  
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search by Name ...">
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">  
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search by Phone ...">
+								</div>
+							</div>
+							<div class="col-lg-2">  
+								<div class="search-student-btn">
+									<button type="btn" class="btn btn-primary">Search</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				 {% endcomment %}
+				 
+					<div class="row">
+						<div class="col-sm-12">
+						
+							<div class="card card-table comman-shadow">
+								<div class="card-body">
+								
+									<!-- Page Header -->
+									{% comment %} <div class="page-header">
+										<div class="row align-items-center">
+											<div class="col">
+												<h3 class="page-title">Students</h3>
+											</div>
+											<div class="col-auto text-end float-end ms-auto download-grp">
+												<a href="students.html" class="btn btn-outline-gray me-2 active"><i class="feather-list"></i></a>
+												<a href="students-grid.html" class="btn btn-outline-gray me-2"><i class="feather-grid"></i></a>
+												<a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
+												<a href="add-student.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+											</div>
+										</div> {% endcomment %}
+									</div>
+									<!-- /Page Header -->
+									<div class="col-lg-6">
+										<form id="searchForm">
+											<input type="text" id="searchInput" placeholder="Search by movie name" class="form-control">
+											<button type="button" class="btn btn-primary" onclick="searchTable()">Search</button>
+										</form>
+									</div>	
+									<div class="table-responsive">
+										<table class="table border-0 star-student table-hover table-center mb-0 datatable table-striped display" id="studentTable">
+											<thead class="student-thread">
+												<tr>
+													<th>
+														<div class="form-check check-tables">
+															<input class="form-check-input" type="checkbox" value="something">
+														</div>
+													</th>
+													<th>SR NO </th>
+													<th>Release Date</th>
+													<th>Movie Name </th>
+													<th>Duration</th>
+													<th>Rating</th>
+													<th>Access</th>
+													<th class="text-end">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for movie in movies %}
+												<tr>
+													<td>
+														<div class="form-check check-tables">
+															<input class="form-check-input" type="checkbox" value="{{ movie.id }}">
+														</div>
+													</td>
+													<td>{{ movie.id }}</td>
+													{% comment %} <td>
+														<h2 class="table-avatar">
+															 <a href="{% url 'students-student' student.id %}" class="avatar avatar-sm me-2">
+																<img class="avatar-img rounded-circle" src="{{ student.photo.url }}" alt="User Image">
+															</a> 
+															 <a href="{% url 'student-details' student.id %}">{{ student.first_name }} {{ student.last_name }}</a> 
+														</h2>
+													</td> {% endcomment %}
+													<td>{{movie.redate }}</td>
+													<td>{{ movie.movienain }}</td>
+													<td>{{ movie.mduration}}</td>
+													<td>{{ movie.Rating}}</td>
+													<td>
+														<div class="container mt-5">
+															
+														
+															<!-- Toggle buttons with "Access" and "Blocked" -->
+															<div class="btn-group btn-toggle">
+																<input type="checkbox" data-toggle="switchbutton" checked data-onstyle="outline-success" data-offstyle="outline-danger">
+															</div>
+														
+															
+														</div>
+													</td>
+													<td class="text-end">
+														<div class="actions ">
+															<a href="movie_profile?movie_id={{ movie.id }}"class="btn btn-sm bg-success-light me-2 ">
+																<i class="feather-eye"></i>
+															</a>
+															<a href="update_movie_page?movie_id={{ movie.id }}" class="btn btn-sm bg-danger-light">
+																<i class="feather-edit"></i>
+															</a>
+															<a href="delete_property?movie_id={{ movie.id }}" class="btn btn-sm bg-danger-light">
+                                                                <i class="feather-trash-2 me-1">
+
+                                                                </i>  	
+															</a>
+                                                    
+														</div>
+													</td>
+													{% comment %} <td class="text-end">
+														<div class="actions ">
+															 <a href="{% url 'student-details' student.id %}" class="btn btn-sm bg-success-light me-2 ">
+																<i class="feather-eye"></i>
+															</a>
+															<a href="{% url 'edit-student' student.id %}" class="btn btn-sm bg-danger-light">
+																<i class="feather-edit"></i> 
+															</a>
+														</div>
+													</td> {% endcomment %}
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+										
+									</div>
+								</div>
+								
+							</div>							
+						</div>					
+					</div>					
+				</div>
+
+				<!-- Footer -->
+				<footer>
+					<p>COPYRIGHT © 2023 DREAMSTECHNOLOGIES.</p>					
+				</footer>
+				<!-- /Footer -->				
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		<script>
+			// JavaScript function to perform search
+			function searchTable() {
+				var input, filter, table, tr, td, i, txtValue;
+				input = document.getElementById("searchInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("studentTable");
+				tr = table.getElementsByTagName("tr");
+		
+				for (i = 0; i < tr.length; i++) {
+					td = tr[i].getElementsByTagName("td")[3]; // Adjust index based on your movie name column
+					if (td) {
+						txtValue = td.textContent || td.innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							tr[i].style.display = "";
+						} else {
+							tr[i].style.display = "none";
+						}
+					}
+				}
+			}
+		</script>
+		{% endblock %}
+		

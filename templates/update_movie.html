@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% block title %}Add property{% endblock %}	
+{% block page_title %}Add property{% endblock %}
+{% block content %}
+
+
+<div class="card comman-shadow">
+	<div class="card-body">
+		<form id="addStudentForm" action='update_movie' method="POST" >
+			{% csrf_token %}
+			
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col">
+								<h3 class="page-title">Movie </h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Horizontal Form</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-xl-6 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title">movies deatails </h5>
+								</div>
+								<div class="card-body">
+									
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Cinema</label>
+											<div class="col-lg-9">
+											
+													
+												<select name="cinema" required class="form-control">
+													{% for cinema in cinemas %}
+														<option value="{{ movie.cinema.id }}" {% if cinema.id == movie.cinema.name %}selected{% endif %}>{{ cinema.name }}</option>
+													{% endfor %}
+												</select>
+												
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie name in english</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control"  value="{{ movie.movienain}}" name="movienain"> 
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie name in arbic </label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="movienaar" value="{{ movie.movienaar}}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Release date </label>
+											<div class="col-lg-9">
+												<input type="date" class="form-control datetimepicker" name="redate"  value="{{ movie.redate}}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Tentetive date</label>
+											<div class="col-lg-9">
+												<input type="date" class="form-control" name="tedate"  value="{{ movie.tedate}}" >
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie duartion</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="mduration"  value="{{ movie.mduration}}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie discription in english</label>
+											<div class="col-lg-9">
+												<textarea class="form-control" row="4" col="5" name="mdiscription" value="{{movie.mdiscription}}">{{movie.mdiscription}}</textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie discription in arbic</label>
+											<div class="col-lg-9">
+												<textarea class="form-control" row="4" col="5" name="mdiscriptionar" value="{{movie.mdiscriptionar}}">{{movie.mdiscriptionar}}</textarea>
+											</div>
+										</div>
+										<div class="card-header">
+											<h5 class="card-title">movies  cast</h5>
+										</div>
+										
+										<div class="col-lg-9">
+											
+											<div class="form-group">
+												<input type="text" placeholder="Name english" class="form-control" name="castnamein"  value="{{ movie.castnamein}}">
+											</div>
+										</div>
+										<div class="col-lg-9">
+											<div class="form-group">
+												<input type="text" placeholder=" Name in arbic" class="form-control" name="castnamear"  value="{{ movie.castnamear}}">
+											</div>
+										</div>
+										<div class="col-lg-9">
+											
+											<div class="form-group">
+												<input type="text" placeholder="role play  in english" class="form-control" name="rolepin"  value="{{ movie.rolepin}}">
+											</div>
+										</div>
+										<div class="col-lg-9">
+											<div class="form-group">
+												<input type="text" placeholder=" role play  in english" class="form-control"name="rolepar"  value="{{ movie.rolepar}}">
+											</div>
+										</div>
+										<div class="card-header">
+											<h5 class="card-title">movies  crew</h5>
+										</div>
+										
+										<div class="col-lg-9">
+											
+											<div class="form-group">
+												<input type="text" placeholder="name in enlish" class="form-control" name="crewnamein"  value="{{movie.crewnamein}}">
+											</div>
+										</div>
+										<div class="col-lg-9">
+											<div class="form-group">
+												<input type="text" placeholder=" Name in arbic" class="form-control" name="crewnamear"  value="{{ movie.crewnamear}}">
+											</div>
+										</div>
+										<div class="col-lg-9">
+											
+											<div class="form-group">
+												<input type="text" placeholder="crew member  in english" class="form-control" name="crewmin"  value="{{ movie.crewmin}}">
+											</div>
+										</div>
+										<div class="col-lg-9">
+											<div class="form-group">
+												<input type="text" placeholder="crew member in arbic" class="form-control" name="crewmar"  value="{{ movie.crewmar}}">
+											</div>
+										</div>
+									
+										
+									
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title">movies filter </h5>
+								</div>
+								<div class="card-body">
+									
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Genere</label>
+											<div class="col-lg-9">
+												
+												<select name="genre" required class="form-control">
+													{% for genre in genres %}
+														<option value="{{ movie.genre.id }}" {% if genre.id == movie.genre_id %}selected{% endif %}>{{ genre.name }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label"  >language</label>
+											<div class="col-lg-9">
+												
+												<select name="language" required class="form-control">
+													{% for language in languages %}
+														<option value="{{ movie.language.id }}" {% if language.id == movie.language_id %}selected{% endif %}>{{ language.name }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">fromat</label>
+											<div class="col-lg-9">
+												
+												<select name="format" required class="form-control">
+													{% for format in formats %}
+														<option value="{{ movie.format.id }}" {% if format.id == movie.format_id %}selected{% endif %}>{{ format.name }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Rating </label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="Rating"  value="{{ movie.Rating}}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">trailer vid link</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="trailer"  value="{{ movie.trailer}}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Postal Code</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+
+                                        <div class="col-lg-9">
+                                            <input type="hidden" class="form-control" name="movie_id" value="{{ movie.id}}"   >
+                                        </div>
+
+										<div class="student-submit">
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+										
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				
+				
+					
+				</div>
+            </div>
+		</form>
+	</div>
+</div>	
+{% comment %} <script>
+	$(document).ready(function () {
+	  $("#addStudentForm").submit(function (event) {
+		event.preventDefault(); // Prevent the default form submission
+		
+	
+		var formData = $(this).serialize();
+	
+		$.ajax({
+		  type: "POST",
+		  url: "/add_student/",
+		  data: formData,
+		  success: function (data) {
+			// Display SweetAlert for success
+			Swal.fire({
+			  icon: "success",
+			  title: "Success",
+			  text: "Successfully submitted student details!",
+			});
+	
+			// Additional actions after success, if needed
+		  },
+		  error: function (error) {
+			// Display SweetAlert for error
+			Swal.fire({
+			  icon: "error",
+			  title: "Error",
+			  text: error.responseText,
+			});
+	
+			// Additional actions after error, if needed
+		  },
+		});
+	  });
+	});
+	
+  </script> {% endcomment %}
+{% endblock %}	
+				
+					

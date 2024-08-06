@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}Add property{% endblock %}	
+{% block page_title %}Add property{% endblock %}
+{% block content %}
+
+
+<div class="card comman-shadow">
+	<div class="card-body">
+		<form id="addStudentForm" action='update_property' method="POST" >
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-12">
+					<h5 class="form-title student-info">propertyInformation <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group ">
+						<label >Project Name <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter project Name" value="{{ property.name }}" name="name" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group">
+						<label >CODE (IF ANY) </label>
+						<input class="form-control" type="text" placeholder="Enter Code_name " value="{{ property.Code_name }}"  name="Code_name" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group ">
+						<label >Type </label>
+						<select class="form-control select" name="type">
+							<option value="{{ property.type }}"></option>
+							<option value="residential">Residential</option>
+							<option value="commercial">Commercial</option>
+							
+							</select>
+					</div>
+				</div>
+                    <label class="col-form-label col-md-2">About project</label>
+                    <div class="col-md-12">
+                        <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here" name="about_project" value="{{ property.about_project }}" ></textarea>
+                </div>
+				<br>
+                <br>
+                <br>
+                <h5>property location</h5>
+										
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" value="{{ property.address }}" >
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="city" value="{{ property.city }}" >
+                        </div>
+                        <div class="form-group">
+                            <label>Google map latitude</label>
+                            <input type="text" class="form-control" name="gm_latitude" value="{{ property.gm_latitude }}" >
+                        </div>
+                        
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Pin code</label>
+                            <input type="text" class="form-control" name="pin_code" value="{{ property.pin_code }}" >
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" class="form-control" name="state" value="{{ property.state }}" >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Google map longitude</label>
+                            <input type="text" class="form-control" name="gm_longitude" value="{{ property.gm_longitude }}" >
+                        </div>
+                        
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                	
+                
+                
+				<h4>Builder information</h4>
+                <div class="row">
+                    <div class="col-12">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Builder name </label>
+                            <input type="text" class="form-control" name="builder_name" value="{{ property.builder_name }}">
+                       
+                        
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>MAHA NUMBER</label>
+                            <input type="text" class="form-control" name="maha_num" value="{{ property.maha_num }}">
+                        </div>
+                    <div>   
+                    <div>   
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>id</label>
+                            <input type="hidden" class="form-control" name="property_id" value="{{ property.id }}">
+                        </div>
+                    <div>   
+                        
+                    
+                </div>
+
+                <div class="col-12">
+					<div class="student-submit">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+            </div>
+		</form>
+	</div>
+</div>	
+{% comment %} <script>
+	$(document).ready(function () {
+	  $("#addStudentForm").submit(function (event) {
+		event.preventDefault(); // Prevent the default form submission
+		
+	
+		var formData = $(this).serialize();
+	
+		$.ajax({
+		  type: "POST",
+		  url: "/add_student/",
+		  data: formData,
+		  success: function (data) {
+			// Display SweetAlert for success
+			Swal.fire({
+			  icon: "success",
+			  title: "Success",
+			  text: "Successfully submitted student details!",
+			});
+	
+			// Additional actions after success, if needed
+		  },
+		  error: function (error) {
+			// Display SweetAlert for error
+			Swal.fire({
+			  icon: "error",
+			  title: "Error",
+			  text: error.responseText,
+			});
+	
+			// Additional actions after error, if needed
+		  },
+		});
+	  });
+	});
+	
+  </script> {% endcomment %}
+{% endblock %}	
+				
+					

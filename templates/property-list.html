@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% block title %}Poperty list {% endblock %}	
+{% block page_title %} Poperty List{% endblock %}
+{% block content %}
+			
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-sub-header">
+									<h3 class="page-title">Properties</h3>
+									<ul class="breadcrumb">
+										<li class="breadcrumb-item"><a href="students.html">Student</a></li>
+										<li class="breadcrumb-item active">Properties</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="student-group-form">
+						<div class="row">
+							<div class="col-lg-3 col-md-6">  
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search by ID ...">
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">  
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search by Name ...">
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">  
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search by Phone ...">
+								</div>
+							</div>
+							<div class="col-lg-2">  
+								<div class="search-student-btn">
+									<button type="btn" class="btn btn-primary">Search</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-sm-12">
+						
+							<div class="card card-table comman-shadow">
+								<div class="card-body">
+								
+									<!-- Page Header -->
+									<div class="page-header">
+										<div class="row align-items-center">
+											<div class="col">
+												<h3 class="page-title">Students</h3>
+											</div>
+											<div class="col-auto text-end float-end ms-auto download-grp">
+												<a href="students.html" class="btn btn-outline-gray me-2 active"><i class="feather-list"></i></a>
+												<a href="students-grid.html" class="btn btn-outline-gray me-2"><i class="feather-grid"></i></a>
+												<a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
+												<a href="add-student.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+											</div>
+										</div>
+									</div>
+									<!-- /Page Header -->
+									
+									<div class="table-responsive">
+										<table class="table border-0 star-student table-hover table-center mb-0 datatable table-striped display" id="studentTable" >
+											<thead class="student-thread">
+												<tr>
+													<th>
+														<div class="form-check check-tables">
+															<input class="form-check-input" type="checkbox" value="something">
+														</div>
+													</th>
+													<th>ID</th>
+													<th>Name of the project</th>
+													<th>Code_name </th>
+													<th>type</th>
+													<th>address</th>
+													<th>city</th>
+													<th>state</th>
+													<th>builder_name </th>
+													<th class="text-end">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for property in properties %}
+												<tr>
+													<td>
+														<div class="form-check check-tables">
+															<input class="form-check-input" type="checkbox" value="{{ student.id }}">
+														</div>
+													</td>
+													<td>{{ property.id }}</td>
+													{% comment %} <td>
+														<h2 class="table-avatar">
+															 <a href="{% url 'students-student' student.id %}" class="avatar avatar-sm me-2">
+																<img class="avatar-img rounded-circle" src="{{ student.photo.url }}" alt="User Image">
+															</a> 
+															 <a href="{% url 'student-details' student.id %}">{{ student.first_name }} {{ student.last_name }}</a> 
+														</h2>
+													</td> {% endcomment %}
+													<td>{{ property.name }}</td>
+													<td>{{ property.Code_name }}</td>
+													<td>{{ property.type }}</td>
+													<td>{{ property.address}}</td>
+													<td>{{ property.city }}</td>
+													<td>{{ property.state }}</td>
+													<td>{{ property.builder_name  }}</td>
+													<td class="text-end">
+														<div class="actions ">
+															<a href="student_profile?student_id={{ student.id }}"class="btn btn-sm bg-success-light me-2 ">
+																<i class="feather-eye"></i>
+															</a>
+															<a href="update_property_page?property_id={{ property.id }}" class="btn btn-sm bg-danger-light">
+																<i class="feather-edit"></i>
+															</a>
+															<a href="delete_property?property_id={{ property.id }}" class="btn btn-sm bg-danger-light">
+                                                                <i class="feather-trash-2 me-1">
+
+                                                                </i>  	
+															</a>
+                                                    
+														</div>
+													</td>
+													{% comment %} <td class="text-end">
+														<div class="actions ">
+															 <a href="{% url 'student-details' student.id %}" class="btn btn-sm bg-success-light me-2 ">
+																<i class="feather-eye"></i>
+															</a>
+															<a href="{% url 'edit-student' student.id %}" class="btn btn-sm bg-danger-light">
+																<i class="feather-edit"></i> 
+															</a>
+														</div>
+													</td> {% endcomment %}
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+										
+									</div>
+								</div>
+							</div>							
+						</div>					
+					</div>					
+				</div>
+
+				<!-- Footer -->
+				<footer>
+					<p>COPYRIGHT © 2023 DREAMSTECHNOLOGIES.</p>					
+				</footer>
+				<!-- /Footer -->				
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		 <script>
+        $(document).ready(function() {
+            $('#studentTable').DataTable();
+			});
+		</script>
+		{% endblock %}
+		

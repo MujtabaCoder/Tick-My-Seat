@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% block title %}Add property{% endblock %}	
+{% block page_title %}Add property{% endblock %}
+{% block content %}
+
+
+<div class="card comman-shadow">
+	<div class="card-body">
+		<form id="addStudentForm" action='add_movie' method="POST" >
+			{% csrf_token %}
+			
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col">
+								<h3 class="page-title">Movie </h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Horizontal Form</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-xl-6 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title">movies deatails </h5>
+								</div>
+								<div class="card-body">
+									
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Cinema</label>
+											<div class="col-lg-9">
+												<select name="cinemas"  required  class="form-control" >
+													{% for cinema in cinemas %}
+														<option value="{{ cinema.id }}">{{ cinema.name }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie name in english</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="movienain"> 
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie name in arbic </label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="movienaar">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Release date </label>
+											<div class="col-lg-9">
+												<input type="date" class="form-control" name="redate">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Tentetive date</label>
+											<div class="col-lg-9">
+												<input type="date" class="form-control" name="tedate">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie duartion</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="mduration">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie discription in english</label>
+											<div class="col-lg-9">
+												<textarea class="form-control" row="4" col="5" name="mdiscription"></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">movie discription in arbic</label>
+											<div class="col-lg-9">
+												<textarea class="form-control" row="4" col="5" name="mdiscriptionar"></textarea>
+											</div>
+										</div>
+										<div class="card-header">
+											<h5 class="card-title">Movies Cast</h5>
+										</div>
+										
+										<div id="cast-container">
+											<div class="cast-input">
+												<input type="text" class="form-control" name="cast_name_english[]" placeholder="Name in English" required>
+												<input type="text" class="form-control" name="cast_name_arabic[]" placeholder="Name in Arabic" required>
+												<input type="text" class="form-control" name="cast_role_english[]" placeholder="Role in English" required>
+												<input type="text" class="form-control" name="cast_role_arabic[]" placeholder="Role in Arabic" required>
+											</div>
+											<!-- Add more cast input fields dynamically using JavaScript -->
+										</div>
+										<button type="button" class="btn btn-primary"onclick="addCastInput()">Add More Cast</button> <br><br><br>
+								
+										<!-- Add Multiple Crews -->
+										<div class="card-header">
+											<h5 class="card-title">Movies Crew</h5>
+										</div>
+										<div id="crew-container">
+											<div class="crew-input">
+												<input type="text" class="form-control" name="crew_name_english[]" placeholder="Name in English" required>
+												<input type="text" class="form-control" name="crew_name_arabic[]" placeholder="Name in Arabic" required>
+												<input type="text" class="form-control" name="crew_role_english[]" placeholder="Role in English" required>
+												<input type="text" class="form-control" name="crew_role_arabic[]" placeholder="Role in Arabic" required>
+											</div>
+											<!-- Add more crew input fields dynamically using JavaScript -->
+										</div>
+										<button type="button" class="btn btn-primary" onclick="addCrewInput()">Add More Crew</button>
+										
+									
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title">movies filter </h5>
+								</div>
+								<div class="card-body">
+									
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Genere</label>
+											<div class="col-lg-9">
+												<select name="genres"  required class="form-control" >
+													
+													{% for genre in genres %}
+														<option value="{{ genre.id }}">{{ genre.name }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">language</label>
+											<div class="col-lg-9">
+											<select name="languages" required class="form-control">
+												{% for language in languages %}
+													<option value="{{ language.id }}">{{ language.name }}</option>
+												{% endfor %}
+											</select>
+										</div>
+										</div>
+										<div class="form-group row">
+
+											<label class="col-lg-3 col-form-label">fromat</label>
+											<div class="col-lg-9">
+											<select name="formats" required class="form-control">
+												{% for format in formats %}
+													<option value="{{ format.id }}">{{ format.name }}</option>
+												{% endfor %}
+											</select>
+										</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Rating </label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="Rating">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">trailer vid link</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control" name="trailer">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-lg-3 col-form-label">Postal Code</label>
+											<div class="col-lg-9">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+
+										<div class="student-submit">
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+										
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				
+				
+					
+				</div>
+            </div>
+		</form>
+	</div>
+</div>	
+{% comment %} <script>
+    function addCastInput() {
+        var container = document.getElementById('cast-container');
+        var input = document.createElement('div');
+        input.className = 'cast-input';
+        input.innerHTML = '<br><br><br><input type="text" class="form-control"  name="cast_name_english[]" placeholder="Name in English" required>' +
+                          '<input type="text" class="form-control" name="cast_name_arabic[]" placeholder="Name in Arabic" required>' +
+                          '<input type="text" class="form-control"  name="cast_role_english[]" placeholder="Role in English" required>' +
+                          '<input type="text"  class="form-control" name="cast_role_arabic[]" placeholder="Role in Arabic" required><br><br><br>';
+        container.appendChild(input);
+    }
+
+    function addCrewInput() {
+        var container = document.getElementById('crew-container');
+        var input = document.createElement('div');
+        input.className = 'crew-input';
+        input.innerHTML = '<br><br><br><input type="text"  class="form-control" name="crew_name_english[]" placeholder="Name in English" required>' +
+                          '<input type="text" class="form-control"  name="crew_name_arabic[]" placeholder="Name in Arabic" required>' +
+                          '<input type="text"  class="form-control" name="crew_role_english[]" placeholder="Role in English" required>' +
+                          '<input type="text" class="form-control" name="crew_role_arabic[]" placeholder="Role in Arabic" required><br><br><br>';
+        container.appendChild(input);
+    }
+</script> {% endcomment %}
+{% endblock %}	
+				
+					
